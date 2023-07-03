@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@progress/kendo-angular-buttons": "^13.1.0"
+  }
+}
