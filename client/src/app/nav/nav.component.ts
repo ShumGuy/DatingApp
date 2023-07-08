@@ -32,9 +32,9 @@ export class NavComponent implements OnInit{
   handleItemClick(item:any){
     if(item.text ==='Logout'){
       this.logout();
-    } else
+    } else if (item.text === 'Edit Profile')
     {
-
+      this.router.navigateByUrl('/member/edit')
     }
   }
 
