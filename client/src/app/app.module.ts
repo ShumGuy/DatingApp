@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonsModule, DropDownButtonModule } from '@progress/kendo-angular-buttons';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
@@ -25,6 +25,10 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { TestInputComponent } from './_forms/test-input/test-input.component';
+import { LabelModule } from "@progress/kendo-angular-label";
+import { InputsModule } from "@progress/kendo-angular-inputs";
+import { DatePickerComponent } from './_forms/date-picker/date-picker.component';
 
 
 @NgModule({
@@ -42,8 +46,9 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
     ServerErrorComponent,
     MemberCardComponent,
     MemberEditComponent,
-    PhotoEditorComponent
-
+    PhotoEditorComponent,
+    TestInputComponent,
+    DatePickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,10 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
     FormsModule,
     ButtonsModule,
     DropDownButtonModule,
-    SharedModule
+    ReactiveFormsModule,
+    SharedModule,
+    InputsModule,
+    LabelModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true},
