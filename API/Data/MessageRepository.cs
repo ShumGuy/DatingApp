@@ -36,17 +36,27 @@ namespace API.Data
         public async Task<PagedList<MessageDto>> getMessagesForUser(MessageParams messageParams)
         {
             var query =_context.Messages
+<<<<<<< HEAD
                 .OrderBy(x => x.MessageSent)
+=======
+                .OrderByDescending(x => x.MessageSent)
+>>>>>>> 5553a90e98c491af84c319446ed6e7ab30a309e7
                 .AsQueryable();
             
             query = messageParams.Container switch 
             {
+<<<<<<< HEAD
                 "Inbox" => query.Where(u => u.RecipientUsername == messageParams.Username 
                     && u.RecipientDeleted == false),
                 "Outbox" => query.Where(u => u.SenderUsername == messageParams.Username 
                     && u.SenderDeleted == false),
                 _ => query.Where(u => u.RecipientUsername == messageParams.Username 
                     && u.RecipientDeleted == false && u.DateRead == null)
+=======
+                "Inbox" => query.Where(u => u.RecipientUsername == messageParams.Username),
+                "Outbox" => query.Where(u => u.SenderUsername == messageParams.Username),
+                _ => query.Where(u => u.RecipientUsername == messageParams.Username && u.DateRead == null)
+>>>>>>> 5553a90e98c491af84c319446ed6e7ab30a309e7
             };
 
             var messages = query.ProjectTo<MessageDto>(_mapper.ConfigurationProvider);
@@ -61,9 +71,15 @@ namespace API.Data
                 .Include(u => u.Sender).ThenInclude(p => p.Photos)
                 .Include(u => u.Recipient).ThenInclude(p => p.Photos)
                 .Where(
+<<<<<<< HEAD
                     m => m.RecipientUsername == currentUserName && m.RecipientDeleted == false &&
                     m.SenderUsername == recipientUserName ||
                     m.RecipientUsername == recipientUserName && m.SenderDeleted == false &&
+=======
+                    m => m.RecipientUsername == currentUserName && 
+                    m.SenderUsername == recipientUserName ||
+                    m.RecipientUsername == recipientUserName &&
+>>>>>>> 5553a90e98c491af84c319446ed6e7ab30a309e7
                     m.SenderUsername == currentUserName
                 )
                 .OrderByDescending(m => m.MessageSent)
